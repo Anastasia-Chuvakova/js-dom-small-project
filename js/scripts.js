@@ -35,8 +35,26 @@
 
       //append the image to the overlay
       overlay.appendChild(popUpImage);
-      //
-      console.log(popUpImage);
-    }
-  });
-})();
+
+      popUpImage.addEventListener("click", function () {
+        if (overlay) {
+          overlay.parentElement.removeChild(overlay);
+        }
+      });
+
+      //set image to follow window scroll
+      window.addEventListener("scroll", function () {
+        if (overlay) {
+          overlay.style.top = window.pageYOffset + "px";
+          overlay.style.left = window.pageXOffset + "px";
+        }
+      });
+
+      //set overlay/ event listener to follow the resize
+      window.addEventListener("resize", function () {
+        overlay.style.width = window.innerWidth + "px";
+        overlay.style.height = window.innerHeight + "px";
+      });
+    } //check the image is being clicked
+  }); //event listener for the dic with class carimages
+})(); // load the document first
